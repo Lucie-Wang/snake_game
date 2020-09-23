@@ -9,6 +9,7 @@ import {
     DIRECTIONS
 } from './constants';
 import apple from '../img/icons_png/apple.png';
+import NavBar from './Navbar';
 import axios from 'axios'
 import { navigate } from '@reach/router'
 
@@ -226,9 +227,10 @@ const GameBoard = (props) => {
 
     return (
         <div className='wrapper' role="button" tabIndex="0" onKeyDown={e => moveSnake(e)}>
-            <div className='sideRight' >
+            {/* <div className='sideRight' >
                 <h2>Welcome!</h2>
-            </div>
+            </div> */}
+            <NavBar/>
             <div >{gameOver && <div  className='classBanner'>GAME OVER!</div>}</div>
             <div className='sideRight'>
                 <h3>Score: {score}</h3>
