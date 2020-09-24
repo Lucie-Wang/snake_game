@@ -21,6 +21,7 @@ const GameBoard = (props) => {
     const [dir, setDir] = useState([0, -1]);
     const [speed, setSpeed] = useState(null);
     const [gameOver, setGameOver] = useState(false);
+    const [showTop, setShowTop] = useState(true);
     const [score, setScore] = useState(0);
     const [intervalVar, setIntervalVar] = useState(null);
     const [timer, setTimer] = useState(0);
@@ -42,6 +43,7 @@ const GameBoard = (props) => {
     const endGame = () => {
         setSpeed(null);
         setGameOver(true);
+        setShowTop(false);
         onTimesUp();
         setHidden(false)
     };
@@ -208,7 +210,7 @@ const GameBoard = (props) => {
                     navigate('/')
                     document.getElementById("myForm").reset()
                     setFormState({
-                        playerName:'',
+                        playerName: '',
                         score: '',
                         time: ''
                     })
@@ -220,69 +222,73 @@ const GameBoard = (props) => {
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/v1/findTop')
-            .then(response => setDisplayState(response.data))
+            .then(response => {
+                setDisplayState(response.data)
+                setShowTop(true);
+            })
             .catch(error => console.log(error))
     }, [refresher])
 
 
     return (
-        <div className='wrapper' role="button" tabIndex="0" onKeyDown={e => moveSnake(e)}>
-            {/* <div className='sideRight' >
-                <h2>Welcome!</h2>
-            </div> */}
-            <NavBar/>
-            <div >{gameOver && <div  className='classBanner'>GAME OVER!</div>}</div>
-            <div className='sideRight'>
-                <h3>Score: {score}</h3>
-                <h3>Time: {formatTime(timer)}</h3>
-            </div>
-            <div className='side'>
-                {errorState.map((item, index) => (
-                    <p style={{ color: 'red' }} key={index}>{item}</p>
-                ))}
-                <form onSubmit={submitForm} hidden={hidden} id='myForm'>
-                    <h3>Show off Your Score!</h3>
-                    <p>Player Name</p>
-                    <input type="text" name='playerName' onChange={onChangeHandler} />
-                    <p>Score : {score}</p>
-                    <p>Time: {formatTime(timer)}</p>
+        <div role="button" tabIndex="0" onKeyDown={e => moveSnake(e)}>
+            <NavBar score={score} time={formatTime(timer)} startGame={startGame} />
+            <div className='wrapper' >
+                <div></div>
+                <canvas
+                    className='board'
+                    ref={canvasRef}
+                    width={`${CANVAS_SIZE[0]}px`}
+                    height={`${CANVAS_SIZE[1]}px`}
+                />
+                <div>
+                    <div className='side'>
+                        <div className='display-banner'>
+                            {!showTop ?
+                                <div> {errorState.map((item, index) => (
+                                    <p style={{ color: 'red' }} key={index}>{item}</p>
+                                ))}
+                                    <form onSubmit={submitForm} hidden={hidden} id='myForm'>
+                                        <h3>Show off Your Score!</h3>
+                                        <p>Player Name</p>
+                                        <input type="text" name='playerName' onChange={onChangeHandler} />
+                                        <p>Score : {score}</p>
+                                        <p>Time: {formatTime(timer)}</p>
 
-                    <button type='submit'> Submit</button>
-                </form></div>
-            <canvas
-                className='board'
-                ref={canvasRef}
-                width={`${CANVAS_SIZE[0]}px`}
-                height={`${CANVAS_SIZE[1]}px`}
-            />
-            <div className='side'>
-                <h3>Top 5 Scores</h3>
-                <table >
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Score</th>
-                            <th>Time</th>
-                            <th>Player</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {displayState.map((item, index) => (
-                            <tr key={index} >
-                                <td>{index + 1}</td>
-                                <td>{item.score} </td>
-                                <td>{formatTime(item.time)}</td>
-                                <td>{item.playerName} </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                                        <button type='submit'> Submit</button>
+                                    </form></div>
+                                :
+                                <div>
+                                    <h3>Top 5 Scores</h3>
+                                    <table >
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Score</th>
+                                                <th>Time</th>
+                                                <th>Player</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {displayState.map((item, index) => (
+                                                <tr key={index} >
+                                                    <td>{index + 1}</td>
+                                                    <td>{item.score} </td>
+                                                    <td>{formatTime(item.time)}</td>
+                                                    <td>{item.playerName} </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div></div>
             </div>
-            <div></div>
-            <div className='button'>
-                <button onClick={startGame}>Start Game</button></div>
         </div>
     );
 }
 
-export default GameBoard
+export default GameBoard;
