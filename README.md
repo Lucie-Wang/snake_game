@@ -3,6 +3,12 @@ Snake Game is one of my favorite games in my childhood. I always played it on my
 
 <div align="center">
   
+![Snake Game Demo](./snake_game_demo_II.gif)
+
+</div>
+
+<div align="center">
+  
 ![Snake Game Demo](./snake_game_demo_I.gif)
 
 </div>
