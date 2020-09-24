@@ -74,16 +74,34 @@ code {
   }
 }
 
+h1, h2,h3,h4, p, table, button{
+  color:white;
+  font-family: chalkduster;
+}
+
 .wrapper{
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  overflow-y: auto;
+  grid-template-columns: 0.5fr 1fr 1fr;
+  overflow-y: hidden;
   text-align: center;
   background-image: url('./img/backgrounds/terraria.jpg');
   background-size: cover;
 }
 
+.top-nav{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-image: url('./img/Flat-Nintendo-Icons/PNG/Bricks.png');
+  background-position-y:20%;
+  background-size: contain, cover;
+}
+
+.top-nav h1{
+  padding: 10px 150px 10px 0px;
+}
+
 .board{
+  margin: 45px 0;
   border: 22px solid transparent;
   padding: 10px;
   border-image: url('./img/Flat-Nintendo-Icons/PNG/border_brick.png') 25% round;
@@ -93,42 +111,66 @@ code {
 
 button{
   display: block;
-  margin: auto;
+  margin: 30%;
   padding: 5px 10px;
   margin-top: 20px;
   margin-bottom: 15px;
+  background-color: goldenrod;
+  cursor: pointer;
 }
 
-h2{
-  color:white
+.top-nav button{
+  margin-left: 20%;
 }
 
 .side{
-  margin: auto;
+  margin:0px 20px;
   text-align: justify;
 }
 
+.display-banner{
+  margin-top: 50%;
+  background-image: url('./img/Wood.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding: 65px 0 115px 60px;
+}
+
 .side input{
-  width: 100%;
+  width: 60%;
   margin-bottom: 10px;
 }
 
 .side table, .side tr, .side th, .side td{
-  padding: 1px 3px
+  padding: 2px 3px;
 }
 
 .side table{
-  background-color: white;
   padding: 2px;
   text-align: center;
   margin-top: 10px;
 }
 
+#myForm{
+  width: 100%;
+  text-align: left;
+}
+
+#myForm h3, p{
+  margin-bottom: 15px;
+}
+
 .sideRight{
   text-align: left;
-  color:white;
-  padding: 10px 0 10px 100px;
+  padding: 2.5px 0 2.5px 200px;
+}
 
+.sideRight h2{
+  align-content: center;
+}
+
+.sideRight img{
+  margin-right: 5px;
 }
 
 .classBanner{
@@ -136,4 +178,6 @@ h2{
   font-weight: bold;
   font-size: 40pt;
   text-shadow: 2px 2px 2px whitesmoke;
+  
 }
+
