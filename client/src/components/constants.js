@@ -4,10 +4,10 @@ const FRUIT_START = [8,3];
 const SPEED = 250;
 const SCALE = 25;
 const DIRECTIONS = {
-    38: [0,-1], //up
-    40: [0,1], //down
-    37: [-1,0], //left
-    39: [1,0] //right
+    87: [0,-1], //up
+    83: [0,1], //down
+    65: [-1,0], //left
+    68: [1,0] //right
 };
 export {
     CANVAS_SIZE,

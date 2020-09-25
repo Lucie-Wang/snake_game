@@ -49,7 +49,7 @@ const GameBoard = (props) => {
     };
 
     const moveSnake = ({ keyCode }) =>
-        keyCode >= 37 && keyCode <= 40 && setDir(DIRECTIONS[keyCode]);
+        keyCode >= 65 && keyCode <= 87 && setDir(DIRECTIONS[keyCode]);
 
     const createFruit = () =>
         fruit.map((_a, i) => Math.floor(Math.random() * (CANVAS_SIZE[i] / SCALE)));
@@ -86,7 +86,7 @@ const GameBoard = (props) => {
         const newSnakeHead = [snakeCopy[0][0] + dir[0], snakeCopy[0][1] + dir[1]];
         snakeCopy.unshift(newSnakeHead);
         if (checkCollision(newSnakeHead)) {
-            endGame()
+            endGame();
         }
         if (!checkFruitCollision(snakeCopy) && !gameOver) {
             if (snake.length <= 12) { setScore((snake.length - 2)) }
@@ -104,6 +104,7 @@ const GameBoard = (props) => {
     };
 
     const startGame = () => {
+        setShowTop(true);
         setHidden(true);
         startTimer(0);
         setSnake(SNAKE_START);
