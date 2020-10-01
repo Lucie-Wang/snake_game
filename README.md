@@ -1,7 +1,7 @@
 # snake_game
 :snake: Snake Game is one of my favorite games in my childhood. I always played it on my dad's phone. I used the MERN stack (MongoDB, Express.js, React.js, Node.js) to recreate a simple version of this game, for practice, for fun and for my good merories. 
 
- **🛠️My Work at a Glance**:
+ **🛠️ My Work at a Glance**:
 <ul>
 <li>Built from scratch the front-end web development in React.js using HTML, CSS, JavaScript</li>
 <li>Designed the logic to randomize the fruit placement, dynamic movement of the snake, speed changes and endGame conditions (check collisions)</li>
